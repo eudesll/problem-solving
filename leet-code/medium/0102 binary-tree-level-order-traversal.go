@@ -25,7 +25,7 @@ func levelOrder(root *TreeNode) [][]int {
 		}
 
 		if i < lr {
-			childs = append(childs, r[i])
+			childs = append(childs, r[i]...)
 		}
 
 		level = append(level, childs)
