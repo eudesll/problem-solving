@@ -3,10 +3,10 @@ package leet
 func isBadVersion(version int) bool
 
 func firstBadVersion(n int) int {
-	return binarySearch(1, n)
+	return binarySearch1(1, n)
 }
 
-func binarySearch(start, end int) int {
+func binarySearch1(start, end int) int {
 	length := end - start
 	pos := (length / 2) + start
 
@@ -15,8 +15,8 @@ func binarySearch(start, end int) int {
 	}
 
 	if isBadVersion(pos) {
-		return binarySearch(start, pos)
+		return binarySearch1(start, pos)
 	}
 
-	return binarySearch(pos+1, end)
+	return binarySearch1(pos+1, end)
 }

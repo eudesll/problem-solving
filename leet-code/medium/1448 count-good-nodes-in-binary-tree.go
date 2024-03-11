@@ -1,10 +1,10 @@
 package leet
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
+// type TreeNode struct {
+// 	Val   int
+// 	Left  *TreeNode
+// 	Right *TreeNode
+// }
 
 func goodNodes(root *TreeNode) int {
 	return goodNodesCount(root.Val, root)
