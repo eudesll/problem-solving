@@ -9,21 +9,17 @@ class TreeNode:
     
 class Solution:
   def smallestFromLeaf(self, root: Optional[TreeNode]) -> str:
-    if root is None:
-      return ""
+    def small(node):
+      if node.left is None and node.right is None:
+        return [chr(node.val + 97)]
+
+      opts = []
+      if node.left:
+        opts += small(node.left)
+      if node.right:
+        opts += small(node.right)
+      
+      return [o + chr(node.val + 97) for o in opts]
     
-    if root.left is None and root.right is None:
-      return chr(root.val + 97)
-    
-    l = self.smallestFromLeaf(root.left)
-    r = self.smallestFromLeaf(root.right)
-    
-    res = ""
-    if l and r:
-      res = l if l < r else r
-    else:
-      res = l if l else r
-    
-    return res + chr(root.val + 97)
-  
-  print("ababz" < "abz")
+    all_options = small(root)
+    return min(all_options)
