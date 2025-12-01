@@ -2,9 +2,8 @@ def stop_on_zero(data): # 1
   dial, r = 50, 0
   for d in data:
     dial += (int(d[1:]) if d[0] == "R" else -int(d[1:]))
-    dial %= 100
 
-    r += 0 if dial else 1
+    r += 0 if dial % 100 else 1
   
   return r
 
