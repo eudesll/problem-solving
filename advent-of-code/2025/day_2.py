@@ -25,7 +25,7 @@ def part2(data): # 2
         sub = n[0:i]
         if len(n) % i != 0:
           continue
-        
+
         for j in range(i, len(n), i):
           if n[j:j+i] != sub:
             sub = False
@@ -37,7 +37,7 @@ def part2(data): # 2
   
   return r
 
-def __main__():
+if __name__ == "__main__":
   filenames = ["test", "input"]
   for filename in filenames:
     file = open("day_2_" + filename, "r")
@@ -46,5 +46,3 @@ def __main__():
     print(filename)
     print(f"- 1:", part1(data))
     print(f"- 2:", part2(data))
-
-__main__()

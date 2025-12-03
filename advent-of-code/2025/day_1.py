@@ -20,7 +20,7 @@ def pass_through_zero(data): # 2
   
   return r
 
-def __main__():
+if __name__ == "__main__":
   filenames = ["test", "input"]
   for filename in filenames:
     file = open("day_1_" + filename, "r")
@@ -29,5 +29,3 @@ def __main__():
     print(filename)
     print(f"- 1:", stop_on_zero(data))
     print(f"- 2:", pass_through_zero(data))
-
-__main__()
