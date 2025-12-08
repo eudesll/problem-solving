@@ -1,5 +1,4 @@
-import sys
-from collections import defaultdict
+import os
 
 def part1(data):
   fresh = build_fresh_map(data[0])
@@ -43,12 +42,30 @@ def build_fresh_map(data):
 
   return dict(fresh)
 
-if __name__ == "__main__":
-  filenames = ["test", "input"]
-  for filename in filenames:
-    file = open("day_5_" + filename, "r")
-    data = file.read().split("\n\n")
+example="""
+3-5
+10-14
+16-20
+12-18
 
-    print(filename)
-    print(f"- 1:", part1(data))
-    print(f"- 2:", part2(data))
+1
+5
+8
+11
+17
+32"""
+
+expected=[3, 14]
+
+if __name__ == "__main__":
+  dir = os.path.dirname(__file__)
+  file = open(os.path.join(dir, "5_input"), "r")
+  inputs = [example[1:].split("\n\n"), file.read().split("\n\n")]
+  
+  for i, p in enumerate([part1, part2]):
+    res = p(inputs[0])
+    if res != expected[i]:
+      print(f"{i + 1}: {res}, should be {expected[i]}")
+      break
+    
+    print(f"{i + 1}: {p(inputs[1])}")

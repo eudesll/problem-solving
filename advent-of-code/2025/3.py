@@ -1,3 +1,5 @@
+import os
+
 def part1(data):
   ans = 0
   for d in data:
@@ -27,15 +29,26 @@ def part2(data):
       stack.append(v)
 
     ans += int("".join(stack[:12]))
-  
+
   return ans
 
-if __name__ == "__main__":
-  filenames = ["test", "input"]
-  for filename in filenames:
-    file = open("day_3_" + filename, "r")
-    data = file.read().split("\n")
+example="""
+987654321111111
+811111111111119
+234234234234278
+818181911112111"""
 
-    print(filename)
-    print(f"- 1:", part1(data))
-    print(f"- 2:", part2(data))
+expected=[357, 3121910778619]
+
+if __name__ == "__main__":
+  dir = os.path.dirname(__file__)
+  file = open(os.path.join(dir, "3_input"), "r")
+  inputs = [example[1:].split("\n"), file.read().split("\n")]
+  
+  for i, p in enumerate([part1, part2]):
+    res = p(inputs[0])
+    if res != expected[i]:
+      print(f"{i + 1}: {res}, should be {expected[i]}")
+      break
+    
+    print(f"{i + 1}: {p(inputs[1])}")

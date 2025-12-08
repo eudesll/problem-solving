@@ -1,3 +1,4 @@
+import os
 import math
 
 def part1(data):
@@ -43,12 +44,23 @@ def part2(data):
 
   return ans
 
-if __name__ == "__main__":
-  filenames = ["test", "input"]
-  for filename in filenames:
-    file = open("day_6_" + filename, "r")
-    data = file.read().split("\n")
+example="""
+123 328  51 64 
+ 45 64  387 23 
+  6 98  215 314
+*   +   *   +  """
 
-    print(filename)
-    print(f"- 1:", part1(data))
-    print(f"- 2:", part2(data))
+expected=[4277556, 3263827]
+
+if __name__ == "__main__":
+  dir = os.path.dirname(__file__)
+  file = open(os.path.join(dir, "6_input"), "r")
+  inputs = [example[1:].split("\n"), file.read().split("\n")]
+  
+  for i, p in enumerate([part1, part2]):
+    res = p(inputs[0])
+    if res != expected[i]:
+      print(f"{i + 1}: {res}, should be {expected[i]}")
+      break
+    
+    print(f"{i + 1}: {p(inputs[1])}")

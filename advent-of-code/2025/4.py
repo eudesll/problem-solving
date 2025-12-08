@@ -1,3 +1,5 @@
+import os
+
 def part1(data):
   ans = 0
   for y, d in enumerate(data):
@@ -42,13 +44,30 @@ def part2(data):
       
   return ans
 
-if __name__ == "__main__":
-  filenames = ["test", "input"]
-  for filename in filenames:
-    file = open("day_4_" + filename, "r")
-    data = file.read().split("\n")
-    data = [list(d) for d in data]
+example="""
+..@@.@@@@.
+@@@.@.@.@@
+@@@@@.@.@@
+@.@@@@..@.
+@@.@@@@.@@
+.@@@@@@@.@
+.@.@.@.@@@
+@.@@@.@@@@
+.@@@@@@@@.
+@.@.@@@.@."""
 
-    print(filename)
-    print(f"- 1:", part1(data))
-    print(f"- 2:", part2(data))
+expected=[13, 43]
+
+if __name__ == "__main__":
+  dir = os.path.dirname(__file__)
+  file = open(os.path.join(dir, "4_input"), "r")
+  inputs = [example[1:].split("\n"), file.read().split("\n")]
+  inputs = [[list(r) for r in input] for input in inputs]
+  
+  for i, p in enumerate([part1, part2]):
+    res = p(inputs[0])
+    if res != expected[i]:
+      print(f"{i + 1}: {res}, should be {expected[i]}")
+      break
+    
+    print(f"{i + 1}: {p(inputs[1])}")

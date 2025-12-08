@@ -1,3 +1,4 @@
+import os
 from collections import defaultdict
 
 def part1(data):
@@ -36,12 +37,35 @@ def part2(data):
 
   return sum([ray[x] for x in ray])
 
-if __name__ == "__main__":
-  filenames = ["test", "input"]
-  for filename in filenames:
-    file = open("day_7_" + filename, "r")
-    data = file.read().split("\n")
+example="""
+.......S.......
+...............
+.......^.......
+...............
+......^.^......
+...............
+.....^.^.^.....
+...............
+....^.^...^....
+...............
+...^.^...^.^...
+...............
+..^...^.....^..
+...............
+.^.^.^.^.^...^.
+..............."""
 
-    print(filename)
-    print(f"- 1:", part1(data))
-    print(f"- 2:", part2(data))
+expected=[21, 40]
+
+if __name__ == "__main__":
+  dir = os.path.dirname(__file__)
+  file = open(os.path.join(dir, "7_input"), "r")
+  inputs = [example[1:].split("\n"), file.read().split("\n")]
+  
+  for i, p in enumerate([part1, part2]):
+    res = p(inputs[0])
+    if res != expected[i]:
+      print(f"{i + 1}: {res}, should be {expected[i]}")
+      break
+    
+    print(f"{i + 1}: {p(inputs[1])}")

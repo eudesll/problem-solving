@@ -1,6 +1,6 @@
-from collections import Counter 
+import os
 
-def part1(data): # 1
+def part1(data):
   r = 0
   for d in data:
     ds = d.split("-")
@@ -13,7 +13,7 @@ def part1(data): # 1
   
   return r
 
-def part2(data): # 2
+def part2(data):
   r = 0
   for d in data:
     ds = d.split("-")
@@ -37,12 +37,19 @@ def part2(data): # 2
   
   return r
 
-if __name__ == "__main__":
-  filenames = ["test", "input"]
-  for filename in filenames:
-    file = open("day_2_" + filename, "r")
-    data = file.read().split(",")
+example="""11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124"""
 
-    print(filename)
-    print(f"- 1:", part1(data))
-    print(f"- 2:", part2(data))
+expected=[1227775554, 4174379265]
+
+if __name__ == "__main__":
+  dir = os.path.dirname(__file__)
+  file = open(os.path.join(dir, "2_input"), "r")
+  inputs = [example.split(","), file.read().split(",")]
+  
+  for i, p in enumerate([part1, part2]):
+    res = p(inputs[0])
+    if res != expected[i]:
+      print(f"{i + 1}: {res}, should be {expected[i]}")
+      break
+    
+    print(f"{i + 1}: {p(inputs[1])}")
